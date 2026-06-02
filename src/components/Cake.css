@@ -1,0 +1,273 @@
+.cake-section {
+  position: relative;
+  padding: 100px 20px 80px;
+  text-align: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(30,64,175,0.15) 0%, transparent 70%);
+}
+
+.cake-header {
+  margin-bottom: 40px;
+}
+.cake-subtitle {
+  font-family: var(--font-script);
+  font-size: 1.3rem;
+  color: rgba(147,197,253,0.8);
+  margin-top: 8px;
+  font-style: italic;
+}
+
+.cake-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* Cake SVG */
+.cake-visual {
+  position: relative;
+  z-index: 5;
+}
+.cake-svg {
+  width: min(340px, 90vw);
+  filter: drop-shadow(0 20px 40px rgba(37,99,235,0.4));
+}
+
+/* Candle area */
+.candle-area {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: -4px;
+}
+
+.candle-body {
+  width: 18px;
+  height: 52px;
+  background: linear-gradient(90deg, #dbeafe, #93c5fd, #60a5fa, #93c5fd);
+  border-radius: 3px 3px 2px 2px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(96,165,250,0.4);
+}
+.candle-stripe {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: rgba(255,255,255,0.4);
+}
+.candle-stripe:nth-child(1) { top: 12px; }
+.candle-stripe:nth-child(2) { top: 24px; }
+.candle-stripe:nth-child(3) { top: 36px; }
+
+.candle-base {
+  width: 24px;
+  height: 6px;
+  background: linear-gradient(180deg, #bfdbfe, #93c5fd);
+  border-radius: 0 0 4px 4px;
+}
+
+/* Flame */
+.flame-container {
+  position: relative;
+  width: 30px;
+  height: 52px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 2px;
+  transition: transform 0.2s ease;
+}
+.flame-container:hover {
+  transform: scale(1.2);
+}
+.flame-click-hint {
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.65rem;
+  color: rgba(255,220,100,0.9);
+  white-space: nowrap;
+  font-family: var(--font-body);
+  animation: float 1.5s ease-in-out infinite;
+}
+
+.flame-outer {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 38px;
+  background: radial-gradient(ellipse at 50% 100%, #ff9500, #ff6b00, transparent 80%);
+  border-radius: 50% 50% 30% 30%;
+  animation: flame-dance 0.5s ease-in-out infinite alternate;
+  filter: blur(1px);
+}
+.flame-inner {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 26px;
+  background: radial-gradient(ellipse at 50% 100%, #ffd700, #ffaa00, transparent 80%);
+  border-radius: 50% 50% 30% 30%;
+  animation: flame-dance 0.4s ease-in-out infinite alternate-reverse;
+}
+.flame-core {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 14px;
+  background: radial-gradient(ellipse at 50% 100%, #fff5c0, #ffe566, transparent 90%);
+  border-radius: 50% 50% 30% 30%;
+  animation: flame-dance 0.3s ease-in-out infinite alternate;
+}
+.flame-glow {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, rgba(255,180,0,0.3), transparent 70%);
+  border-radius: 50%;
+  animation: pulse-glow 1s ease infinite;
+}
+
+@keyframes flame-dance {
+  0% { transform: translateX(-50%) scaleX(1) rotate(-2deg); }
+  100% { transform: translateX(-50%) scaleX(0.85) rotate(2deg); }
+}
+
+/* Smoke */
+.smoke-container {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+}
+.smoke {
+  position: absolute;
+  background: radial-gradient(circle, rgba(200,200,220,0.6), transparent 70%);
+  border-radius: 50%;
+  animation: smoke 2s ease-out forwards;
+  transform-origin: center bottom;
+}
+.s1 { width: 18px; height: 18px; left: -9px; animation-delay: 0s; }
+.s2 { width: 24px; height: 24px; left: -12px; animation-delay: 0.3s; }
+.s3 { width: 20px; height: 20px; left: -10px; animation-delay: 0.6s; }
+
+/* Plate */
+.cake-plate {
+  width: min(360px, 95vw);
+  height: 20px;
+  background: linear-gradient(180deg, rgba(147,197,253,0.3), rgba(96,165,250,0.1));
+  border-radius: 50%;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  margin-top: -10px;
+}
+
+/* Confetti */
+.confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  overflow: hidden;
+}
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  border-radius: 2px;
+  animation: confetti-fall var(--d, 3s) ease-in var(--delay, 0s) forwards;
+}
+.confetti-piece.circle {
+  border-radius: 50%;
+}
+
+@keyframes confetti-fall {
+  0% {
+    top: -20px;
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    top: 110vh;
+    transform: translateX(var(--drift, 100px)) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Wish card */
+.wish-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 160;
+}
+.wish-container.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.wish-card {
+  display: inline-block;
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(96,165,250,0.3);
+  border-radius: 24px;
+  padding: 28px 36px;
+  max-width: 520px;
+  width: 100%;
+  animation: pulse-glow 3s ease infinite;
+}
+.wish-sparkles {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  animation: float 3s ease-in-out infinite;
+}
+.wish-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff, #93c5fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+}
+.wish-text {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: rgba(191,219,254,0.85);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.wish-hearts {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  letter-spacing: 8px;
+}
+
+@media (max-width: 500px) {
+  .wish-card { padding: 24px 20px; }
+  .wish-title { font-size: 1.3rem; }
+}

@@ -1,0 +1,125 @@
+.her-image-section {
+  padding: 50px 16px 80px;
+  display: grid;
+  justify-items: center;
+  gap: 24px;
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.16), transparent 38%),
+    radial-gradient(circle at bottom right, rgba(214, 180, 255, 0.2), transparent 34%),
+    rgba(250, 246, 255, 0.94);
+}
+
+.her-image-intro {
+  text-align: center;
+  max-width: 740px;
+}
+
+.her-image-note {
+  margin: 0;
+  color: #4d2d70;
+  font-size: 1rem;
+  letter-spacing: 0.012em;
+}
+
+.her-gallery-stack {
+  position: relative;
+  width: min(1100px, 100%);
+  min-height: 420px;
+  aspect-ratio: 2.6 / 1;
+}
+
+.her-gallery-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(220px, 22vw, 320px);
+  aspect-ratio: 4 / 5;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 32px 96px rgba(45, 18, 90, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  background: #fff;
+  transform: translate(-50%, -50%) translateX(var(--x)) rotate(var(--r));
+  opacity: 0;
+  filter: blur(18px);
+  animation: photoIn 0.78s cubic-bezier(0.22, 0.68, 0.46, 1.18) forwards, photoPulse 4.8s ease-in-out calc((var(--idx) - 1) * 0.3s) infinite;
+  animation-delay: calc((var(--idx) - 1) * 0.12s), calc((var(--idx) - 1) * 0.3s + 0.78s);
+}
+
+.her-gallery-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(18, 0, 65, 0.1) 100%);
+  pointer-events: none;
+}
+
+.her-gallery-card:hover {
+  z-index: 3;
+  transform: translate(-50%, -50%) translateY(calc((var(--idx) - 3) * 18px)) scale(1.02);
+}
+
+.her-gallery-stack:hover .her-gallery-card {
+  transform: translate(-50%, -50%) translateY(calc((var(--idx) - 3) * 18px)) scale(0.98);
+}
+
+.her-gallery-photo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+  filter: none;
+}
+
+.her-gallery-card:hover .her-gallery-photo {
+  transform: scale(1.01);
+}
+
+.card-1 {
+  --x: -220px;
+  --r: -9deg;
+}
+
+.card-2 {
+  --x: -120px;
+  --r: -6deg;
+}
+
+.card-3 {
+  --x: 0px;
+  --r: 0deg;
+}
+
+.card-4 {
+  --x: 120px;
+  --r: 6deg;
+}
+
+.card-5 {
+  --x: 220px;
+  --r: 9deg;
+}
+
+@keyframes photoIn {
+  from {
+    opacity: 0;
+    filter: blur(18px);
+    transform: translate(-50%, -50%) translateX(var(--x)) translateY(54px) rotate(var(--r)) scale(0.86);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(-50%, -50%) translateX(var(--x)) rotate(var(--r)) scale(1);
+  }
+}
+
+@keyframes photoPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateX(var(--x)) rotate(var(--r)) scale(1);
+    box-shadow: 0 32px 96px rgba(45, 18, 90, 0.18);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateX(var(--x)) rotate(var(--r)) scale(1.02);
+    box-shadow: 0 38px 112px rgba(45, 18, 90, 0.22);
+  }
+}
